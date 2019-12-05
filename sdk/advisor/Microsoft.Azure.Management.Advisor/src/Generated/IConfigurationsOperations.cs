@@ -71,7 +71,7 @@ namespace Microsoft.Azure.Management.Advisor
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<ARMErrorResponseBody>> CreateInSubscriptionWithHttpMessagesAsync(ConfigData configContract, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<object>> CreateInSubscriptionWithHttpMessagesAsync(ConfigData configContract, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Retrieve Azure Advisor configurations.
         /// </summary>
@@ -118,7 +118,7 @@ namespace Microsoft.Azure.Management.Advisor
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<ARMErrorResponseBody>> CreateInResourceGroupWithHttpMessagesAsync(ConfigData configContract, string resourceGroup, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<object>> CreateInResourceGroupWithHttpMessagesAsync(ConfigData configContract, string resourceGroup, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Retrieve Azure Advisor configurations.
         /// </summary>
