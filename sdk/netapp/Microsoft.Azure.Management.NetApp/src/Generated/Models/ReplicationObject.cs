@@ -30,16 +30,24 @@ namespace Microsoft.Azure.Management.NetApp.Models
         /// <summary>
         /// Initializes a new instance of the ReplicationObject class.
         /// </summary>
-        /// <param name="endpointType">endpointType</param>
-        /// <param name="replicationSchedule">replicationSchedule</param>
-        /// <param name="remoteVolumeResourceId">remoteVolumeResourceId</param>
-        /// <param name="replicationId">replicationId</param>
-        public ReplicationObject(string endpointType, string replicationSchedule, string remoteVolumeResourceId, string replicationId = default(string))
+        /// <param name="replicationSchedule">Schedule</param>
+        /// <param name="remoteVolumeResourceId">The resource ID of the remote
+        /// volume.</param>
+        /// <param name="replicationId">Id</param>
+        /// <param name="endpointType">Indicates whether the local volume is
+        /// the source or destination for the Volume Replication</param>
+        /// <param name="ownerId">Id used to identify the owner of the
+        /// resource</param>
+        /// <param name="remoteVolumeRegion">The remote region for the other
+        /// end of the Volume Replication.</param>
+        public ReplicationObject(string replicationSchedule, string remoteVolumeResourceId, string replicationId = default(string), string endpointType = default(string), string ownerId = default(string), string remoteVolumeRegion = default(string))
         {
             ReplicationId = replicationId;
             EndpointType = endpointType;
             ReplicationSchedule = replicationSchedule;
+            OwnerId = ownerId;
             RemoteVolumeResourceId = remoteVolumeResourceId;
+            RemoteVolumeRegion = remoteVolumeRegion;
             CustomInit();
         }
 
@@ -49,41 +57,42 @@ namespace Microsoft.Azure.Management.NetApp.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets replicationId
+        /// Gets or sets id
         /// </summary>
-        /// <remarks>
-        /// Id
-        /// </remarks>
         [JsonProperty(PropertyName = "replicationId")]
         public string ReplicationId { get; set; }
 
         /// <summary>
-        /// Gets or sets endpointType
+        /// Gets or sets indicates whether the local volume is the source or
+        /// destination for the Volume Replication
         /// </summary>
-        /// <remarks>
-        /// Indicates whether the local volume is the source or destination for
-        /// the Volume Replication
-        /// </remarks>
         [JsonProperty(PropertyName = "endpointType")]
         public string EndpointType { get; set; }
 
         /// <summary>
-        /// Gets or sets replicationSchedule
+        /// Gets or sets schedule
         /// </summary>
-        /// <remarks>
-        /// Schedule
-        /// </remarks>
         [JsonProperty(PropertyName = "replicationSchedule")]
         public string ReplicationSchedule { get; set; }
 
         /// <summary>
-        /// Gets or sets remoteVolumeResourceId
+        /// Gets or sets id used to identify the owner of the resource
         /// </summary>
-        /// <remarks>
-        /// The resource ID of the remote volume.
-        /// </remarks>
+        [JsonProperty(PropertyName = "ownerId")]
+        public string OwnerId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the resource ID of the remote volume.
+        /// </summary>
         [JsonProperty(PropertyName = "remoteVolumeResourceId")]
         public string RemoteVolumeResourceId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the remote region for the other end of the Volume
+        /// Replication.
+        /// </summary>
+        [JsonProperty(PropertyName = "remoteVolumeRegion")]
+        public string RemoteVolumeRegion { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -93,10 +102,6 @@ namespace Microsoft.Azure.Management.NetApp.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (EndpointType == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "EndpointType");
-            }
             if (ReplicationSchedule == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "ReplicationSchedule");

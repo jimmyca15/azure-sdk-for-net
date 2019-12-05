@@ -54,7 +54,8 @@ namespace Microsoft.Azure.Management.NetApp.Models
         /// <param name="mountTargets">mountTargets</param>
         /// <param name="volumeType">What type of volume is this</param>
         /// <param name="dataProtection">DataProtection</param>
-        public Volume(string location, string creationToken, long usageThreshold, string subnetId, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), string fileSystemId = default(string), string serviceLevel = default(string), VolumePropertiesExportPolicy exportPolicy = default(VolumePropertiesExportPolicy), IList<string> protocolTypes = default(IList<string>), string provisioningState = default(string), string snapshotId = default(string), string baremetalTenantId = default(string), object mountTargets = default(object), string volumeType = default(string), VolumePropertiesDataProtection dataProtection = default(VolumePropertiesDataProtection))
+        /// <param name="isRestoring">Restoring</param>
+        public Volume(string location, string creationToken, long usageThreshold, string subnetId, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), string fileSystemId = default(string), string serviceLevel = default(string), VolumePropertiesExportPolicy exportPolicy = default(VolumePropertiesExportPolicy), IList<string> protocolTypes = default(IList<string>), string provisioningState = default(string), string snapshotId = default(string), string baremetalTenantId = default(string), object mountTargets = default(object), string volumeType = default(string), VolumePropertiesDataProtection dataProtection = default(VolumePropertiesDataProtection), bool? isRestoring = default(bool?))
         {
             Location = location;
             Id = id;
@@ -74,6 +75,7 @@ namespace Microsoft.Azure.Management.NetApp.Models
             MountTargets = mountTargets;
             VolumeType = volumeType;
             DataProtection = dataProtection;
+            IsRestoring = isRestoring;
             CustomInit();
         }
 
@@ -225,6 +227,12 @@ namespace Microsoft.Azure.Management.NetApp.Models
         public VolumePropertiesDataProtection DataProtection { get; set; }
 
         /// <summary>
+        /// Gets or sets restoring
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.isRestoring")]
+        public bool? IsRestoring { get; set; }
+
+        /// <summary>
         /// Validate the object.
         /// </summary>
         /// <exception cref="ValidationException">
@@ -296,10 +304,6 @@ namespace Microsoft.Azure.Management.NetApp.Models
                 {
                     throw new ValidationException(ValidationRules.Pattern, "BaremetalTenantId", "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$");
                 }
-            }
-            if (DataProtection != null)
-            {
-                DataProtection.Validate();
             }
         }
     }

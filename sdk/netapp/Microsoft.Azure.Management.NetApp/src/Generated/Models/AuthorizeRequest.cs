@@ -10,34 +10,31 @@
 
 namespace Microsoft.Azure.Management.NetApp.Models
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Azure;
     using Newtonsoft.Json;
     using System.Linq;
 
     /// <summary>
-    /// DataProtection
+    /// Authorize request
     /// </summary>
-    /// <remarks>
-    /// DataProtection volume, can have a replication object
-    /// </remarks>
-    public partial class VolumePropertiesDataProtection
+    public partial class AuthorizeRequest : IResource
     {
         /// <summary>
-        /// Initializes a new instance of the VolumePropertiesDataProtection
-        /// class.
+        /// Initializes a new instance of the AuthorizeRequest class.
         /// </summary>
-        public VolumePropertiesDataProtection()
+        public AuthorizeRequest()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the VolumePropertiesDataProtection
-        /// class.
+        /// Initializes a new instance of the AuthorizeRequest class.
         /// </summary>
-        /// <param name="replication">Replication</param>
-        public VolumePropertiesDataProtection(object replication = default(object))
+        /// <param name="remoteVolumeResourceId">Resource id</param>
+        public AuthorizeRequest(string remoteVolumeResourceId = default(string))
         {
-            Replication = replication;
+            RemoteVolumeResourceId = remoteVolumeResourceId;
             CustomInit();
         }
 
@@ -47,13 +44,10 @@ namespace Microsoft.Azure.Management.NetApp.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets replication
+        /// Gets or sets resource id
         /// </summary>
-        /// <remarks>
-        /// Replication properties
-        /// </remarks>
-        [JsonProperty(PropertyName = "replication")]
-        public object Replication { get; set; }
+        [JsonProperty(PropertyName = "remoteVolumeResourceId")]
+        public string RemoteVolumeResourceId { get; set; }
 
     }
 }
